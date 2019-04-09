@@ -16,7 +16,6 @@ from threading import current_thread, local as _local
 
 #3rd party libs
 import pandas as _pandas
-import numpy as _numpy
 from mechanize import Browser as _Browser
 from bs4 import BeautifulSoup as _BeautifulSoup
 from requests import Session as _Session
