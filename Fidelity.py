@@ -1,21 +1,18 @@
 #stdlib
-from json import load as _load, dumps as _dumps, loads as _loads, decoder as _decoder
-from logging import getLogger as _getLogger, Formatter as _Formatter, basicConfig as _basicConfig, config as _config, INFO as _INFO
+from json import  dumps as _dumps
+from logging import getLogger as _getLogger, Formatter as _Formatter, basicConfig as _basicConfig,  INFO as _INFO
 from argparse import ArgumentParser as _ArgumentParser
 from re import compile as _compile, I as _I, S as _S
 from sys import exc_info as _exc_info
-from copy import deepcopy as _deepcopy
-from os import getenv as _getenv, path as _path
+from os import getenv as _getenv
 from traceback import print_exc as _print_exc
-from calendar import timegm as _timegm
 from datetime import datetime as _datetime
-from time import gmtime as _gmtime, sleep as _sleep
 from uuid import uuid4 as _uuid4
-from inspect import currentframe as currentframe, getargvalues as getargvalues
+import inspect as _inspect
+
 from threading import current_thread, local as _local
 
 #3rd party libs
-import pandas as _pandas
 from mechanize import Browser as _Browser
 from bs4 import BeautifulSoup as _BeautifulSoup
 from requests import Session as _Session
@@ -29,8 +26,8 @@ def make_args_available_deco(f):
 		inner.actual_kwargs = kwargs
 		logger = _getLogger(__name__)
 		logger.info("in make_args_available_deco to output kwargs: %s"%(inner.actual_kwargs))
-		frame = _currentframe()
-		logger.info("current frame level data %s"%(str(_getargvalues(frame))))
+		frame = _inspect.currentframe()
+		logger.info("current frame level data %s"%(str(_inspect.getargvalues(frame))))
 		return f(*args,**kwargs)
 	inner.actual_kwargs = None
 	return inner
